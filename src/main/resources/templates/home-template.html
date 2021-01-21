@@ -30,6 +30,12 @@
                 <a th:each="topic: ${topics}" th:text="${topic.name}" th:href="'/topics/'+${topic.id}" href="#"
                    class="topics__nav-link"></a>
             </nav>
+            <form th:action="'/addtopic'" method="POST">
+                <label for="nameBox">Enter Name</label>
+                <input type="text" id="nameBox" name="topicName">
+                <button type="submit">Add Topic</button>
+
+            </form>
         </section>
     </main>
     </div>

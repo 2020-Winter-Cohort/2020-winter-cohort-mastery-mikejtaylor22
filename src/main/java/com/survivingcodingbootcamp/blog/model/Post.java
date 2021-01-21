@@ -1,6 +1,8 @@
 package com.survivingcodingbootcamp.blog.model;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.Date;
 
 @Entity
 public class Post {
@@ -8,18 +10,31 @@ public class Post {
     @GeneratedValue
     private Long id;
     private String title;
+    private String author;
     @ManyToOne
     private Topic topic;
     @Lob
     private String content;
 
+    private Date date;
+
+    @ManyToMany(mappedBy = "hashtagPosts")
+    private Collection<Hashtag> hashtags;
+    @ManyToMany(mappedBy = "commentPost")
+    private Collection<Comment>comments;
+
     protected Post() {
     }
 
-    public Post(String title, Topic topic, String content) {
+    public Post(String title,String author, Topic topic, String content,Hashtag...hashtag) {
         this.title = title;
+        this.author = author;
         this.topic = topic;
         this.content = content;
+    }
+
+    public String getAuthor() {
+        return author;
     }
 
     public Long getId() {
@@ -36,6 +51,22 @@ public class Post {
 
     public String getContent() {
         return content;
+    }
+
+    public Collection<Hashtag> getHashtags() {
+        return hashtags;
+    }
+
+    public Collection<Comment> getComments() {
+        return comments;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override

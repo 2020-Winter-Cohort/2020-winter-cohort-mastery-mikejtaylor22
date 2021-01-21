@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/topics")
+//@RequestMapping("/topics")
 public class TopicController {
 
     private TopicStorage topicStorage;
@@ -17,7 +17,7 @@ public class TopicController {
 
         this.topicStorage = topicStorage;
     }
-    @GetMapping("/{id}")
+    @RequestMapping("/topics/{id}")
     public String displaySingleTopic(@PathVariable long id, Model model) {
         model.addAttribute("topic", topicStorage.retrieveSingleTopic(id));
         return "single-topic-template";
