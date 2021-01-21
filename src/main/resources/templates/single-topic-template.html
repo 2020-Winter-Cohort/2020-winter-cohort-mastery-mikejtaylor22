@@ -29,6 +29,19 @@
                     <a th:text="${post.title}" th:href="'/posts/'+${post.id}" href="#"
                        class="posts__nav-link"></a>
                 </div>
+                <div class="formDiv">
+                    <form th:action="'/posts/addPost/' + ${topic.id}" method="POST">
+                        <label for="titleBox">Title:  </label>
+                        <input type="text" id="titleBox" name="newTitle">
+
+                        <label for="author">Author:  </label>
+                        <input type="text" id="author" name="newAuthor">
+
+                        <label for="content">Content:  </label>
+                        <textarea type="text" id="content" name="newContent"></textarea>
+                        <button type="submit">Add Post</button>
+
+                    </form>
             </nav>
         </section>
     </main>
